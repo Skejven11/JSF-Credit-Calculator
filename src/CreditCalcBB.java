@@ -11,70 +11,79 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 //@SessionScoped
 public class CreditCalcBB {
-	private String x;
-	private String y;
+	private String inter;
+	private String val;
+	private String years;
 	private Double result;
 
 	@Inject
 	FacesContext ctx;
 
-	public String getX() {
-		return x;
+	public String getInter() {
+		return inter;
 	}
 
-	public void setX(String x) {
-		this.x = x;
+
+	public void setInter(String inter) {
+		this.inter = inter;
 	}
 
-	public String getY() {
-		return y;
+
+	public String getVal() {
+		return val;
 	}
 
-	public void setY(String y) {
-		this.y = y;
+
+	public void setVal(String val) {
+		this.val = val;
 	}
+
+
+	public String getYears() {
+		return years;
+	}
+
+
+	public void setYears(String years) {
+		this.years = years;
+	}
+
 
 	public Double getResult() {
 		return result;
 	}
 
-	public void setResult(Double result) {
-		this.result = result;
-	}
 
 	public boolean doTheMath() {
 		try {
-			double x = Double.parseDouble(this.x);
-			double y = Double.parseDouble(this.y);
-
-			result = x + y;
-
-			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Operacja wykonana poprawnie", null));
+			double years = Double.parseDouble(this.years);
+			double inter = Double.parseDouble(this.inter);
+			double val = Double.parseDouble(this.val);
+			
+			if (years < 0 || inter < 0 || val < 0) {
+				ctx.addMessage(null,
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error, negative parameters", null));
+				return false;
+			}
+			
+			result = (val+val*inter)/(years*12); 
+			
+			if (result < 0 ) ctx.addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error, negative parameters", null));
+			
 			return true;
+			
 		} catch (Exception e) {
 			ctx.addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Błąd podczas przetwarzania parametrów", null));
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error, wrong parameters", null));
 			return false;
 		}
 	}
 
-	// Go to "showresult" if ok
 	public String calc() {
 		if (doTheMath()) {
 			return "showresult";
 		}
 		return null;
-	}
-
-	// Put result in messages on AJAX call
-	public String calc_AJAX() {
-		if (doTheMath()) {
-			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Wynik: " + result, null));
-		}
-		return null;
-	}
-
-	public String info() {
-		return "info";
 	}
 }

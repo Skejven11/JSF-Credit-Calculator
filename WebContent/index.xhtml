@@ -4,24 +4,24 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
 	<title>Credit Calculator using JSF framework</title>
 </h:head>
-<h:body>
+<h:body style="background-color:darkgrey">
 
-	<h1>Credit Calculator using JSF framework</h1>
+	<h1 align="center" style="margin-top:350px">Credit Calculator using JSF framework</h1>
 
 	<h:form id="bla">
-  		<h:inputText value="#{creditCalcBB.val}" pt:placeholder="Value" />
-		<br/>
-  		<h:inputText value="#{creditCalcBB.inter}" pt:placeholder="Interest (2% = 0.02)" />
-		<br/>
-		<h:inputText value="#{creditCalcBB.years}" pt:placeholder="Years" />
-		<br/>
-		<h:messages id="msg" />
+		<p:panel id="basic" style="margin-top:50px;margin-left:40%;margin-right:40%">
+	  		<p:inputText value="#{creditCalcBB.val}" pt:placeholder="Value" style="margin-left:20%"/>
+	  		<p:inputText value="#{creditCalcBB.inter}" pt:placeholder="Interest (2% = 0.02)" style="margin-left:20%"/>
+	  		<p:inputText value="#{creditCalcBB.years}" pt:placeholder="Years" style="margin-left:20%"/>
+		</p:panel>
+		<p:messages id="msg" style="margin-left:40%;margin-right:40%" />
 
-		<h:commandButton value="Calculate" action="#{creditCalcBB.calc()}"/>
+		<p:commandButton value="Calculate" action="#{creditCalcBB.calc()}" update="@form" style="margin-left:47.5%"/>
 		<br />
 	</h:form>
 

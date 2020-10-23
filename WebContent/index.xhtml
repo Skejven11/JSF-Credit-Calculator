@@ -11,19 +11,20 @@
 </h:head>
 <h:body style="background-color:darkgrey">
 
-	<h1 align="center" style="margin-top:350px">Credit Calculator using JSF framework</h1>
+	<p:panel id="basic" style="margin-top:20%;margin-left:40%;margin-right:40%">
+		<h1 align="center">Credit Calculator</h1>
 
-	<h:form id="bla">
-		<p:panel id="basic" style="margin-top:50px;margin-left:40%;margin-right:40%">
-	  		<p:inputText value="#{creditCalcBB.val}" pt:placeholder="Value" style="margin-left:20%"/>
-	  		<p:inputText value="#{creditCalcBB.inter}" pt:placeholder="Interest (2% = 0.02)" style="margin-left:20%"/>
-	  		<p:inputText value="#{creditCalcBB.years}" pt:placeholder="Years" style="margin-left:20%"/>
-		</p:panel>
-		<p:messages id="msg" style="margin-left:40%;margin-right:40%" />
+		<h:form id="bla">
+	  		<p:inputText value="#{creditCalcBB.val}" pt:placeholder="Value (PLN)" style="margin-left:22%"/>
+	  		<p:inputText value="#{creditCalcBB.inter}" pt:placeholder="Interest (2% = 0.02)" style="margin-left:22%"/>
+	  		<p:inputText value="#{creditCalcBB.years}" pt:placeholder="Years" style="margin-left:22%"/>
+	  		
+		<p:messages id="msg"/>
 
-		<p:commandButton value="Calculate" action="#{creditCalcBB.calc()}" update="@form" style="margin-left:47.5%"/>
+		<p:commandButton value="Calculate" action="#{creditCalcBB.calc()}" update="@form" style="margin-left:37%"/>
 		<br />
 	</h:form>
+	</p:panel>
 
 </h:body>
 </html>

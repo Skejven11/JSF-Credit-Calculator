@@ -9,10 +9,13 @@
 	<title>Result</title>
 </h:head>
 <h:body>
-	<h:messages />
-	Amount of money you need to pay every month: #{creditCalcBB.result}
-	<h:form>
-		<p:commandButton value="Return" action="index" />
-	</h:form>
+	<p:panel id="basic" style="margin-top:20%;margin-left:40%;margin-right:40%">
+	<h1 align="center"> Result</h1>
+		<h:messages />
+		Amount of money you need to pay every month: #{creditCalcBB.result} PLN
+		<h:form>
+			<p:commandButton value="Return" action="index" style="margin-left:40%;margin-top:20px" />
+		</h:form>
+	</p:panel>
 </h:body>
 </html>

@@ -11,40 +11,40 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 //@SessionScoped
 public class CreditCalcBB {
-	private String inter;
-	private String val;
-	private String years;
+	private Double inter;
+	private Double val;
+	private Integer years;
 	private Double result;
 
 	@Inject
 	FacesContext ctx;
 
-	public String getInter() {
+	public Double getInter() {
 		return inter;
 	}
 
 
-	public void setInter(String inter) {
+	public void setInter(Double inter) {
 		this.inter = inter;
 	}
 
 
-	public String getVal() {
+	public Double getVal() {
 		return val;
 	}
 
 
-	public void setVal(String val) {
+	public void setVal(Double val) {
 		this.val = val;
 	}
 
 
-	public String getYears() {
+	public Integer getYears() {
 		return years;
 	}
 
 
-	public void setYears(String years) {
+	public void setYears(Integer years) {
 		this.years = years;
 	}
 
@@ -56,20 +56,9 @@ public class CreditCalcBB {
 
 	public boolean doTheMath() {
 		try {
-			double years = Double.parseDouble(this.years);
-			double inter = Double.parseDouble(this.inter);
-			double val = Double.parseDouble(this.val);
 			
-			if (years < 0 || inter < 0 || val < 0) {
-				ctx.addMessage(null,
-						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error, negative parameters", null));
-				return false;
-			}
-			
+			inter = inter*0.01; 
 			result = (val+val*inter)/(years*12); 
-			
-			if (result < 0 ) ctx.addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error, negative parameters", null));
 			
 			return true;
 			

@@ -6,40 +6,40 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
-<h:head>
-	<title>Credit Calculator using JSF framework</title>
-</h:head>
-<h:body style="background-color:darkgrey">
+	
+<ui:composition template="/templates/main-template.xhtml">
 
-	<p:panel id="basic" style="margin-top:20%;margin-left:40%;margin-right:40%">
-		<h1 align="center">Credit Calculator</h1>
+	<ui:define name="pageContent">
+		<p:panel id="basic" style="margin-top:15%;margin-left:40%;margin-right:40%">
+			<h1 align="center">Credit Calculator</h1>
+	
+			<h:form id="Calc">
+		  		<p:inputText id="val" value="#{creditCalcBB.val}" pt:placeholder="Value" style="margin-left:22%"
+		  		required="true" requiredMessage="Field is required" converterMessage="Must be a number" 
+		  		validatorMessage="&lt;100? Not a lot of money bro">
+		  		<f:validateDoubleRange minimum="100"/>
+		  		</p:inputText> PLN
+		  		<p:messages for="val"/>
+		  		
+		  		<p:inputText id="inter" value="#{creditCalcBB.inter}" pt:placeholder="Interest" style="margin-left:22%"
+		  		required="true" requiredMessage="Field is required" converterMessage="Must be a number"
+		  		validatorMessage="??? Precentages can only be 0-100">
+		  		<f:validateDoubleRange minimum="0" maximum="100"/>
+		  		</p:inputText> %
+		  		<p:messages for="inter"/>
+		  		
+		  		<p:inputText id="year" value="#{creditCalcBB.years}" pt:placeholder="Years" style="margin-left:22%"
+		  		required="true" requiredMessage="Field is required" converterMessage="Must be a whole number"
+		  		validatorMessage="Must be more than 0 years">
+		  		<f:validateDoubleRange minimum="1"/>
+		  		</p:inputText>
+		  		<p:messages for="year"/>
+	
+			<p:commandButton value="Calculate" action="#{creditCalcBB.calc()}" update="@form" style="margin-left:37%"/>
+			</h:form>
+		</p:panel>
+	</ui:define>
+	
+</ui:composition>
 
-		<h:form id="Calc">
-	  		<p:inputText id="val" value="#{creditCalcBB.val}" pt:placeholder="Value" style="margin-left:22%"
-	  		required="true" requiredMessage="Field is required" converterMessage="Must be a number" 
-	  		validatorMessage="&lt;100? Not a lot of money bro">
-	  		<f:validateDoubleRange minimum="100"/>
-	  		</p:inputText> PLN
-	  		<p:messages for="val"/>
-	  		
-	  		<p:inputText id="inter" value="#{creditCalcBB.inter}" pt:placeholder="Interest" style="margin-left:22%"
-	  		required="true" requiredMessage="Field is required" converterMessage="Must be a number"
-	  		validatorMessage="??? Precentages can only be 0-100">
-	  		<f:validateDoubleRange minimum="0" maximum="100"/>
-	  		</p:inputText> %
-	  		<p:messages for="inter"/>
-	  		
-	  		<p:inputText id="year" value="#{creditCalcBB.years}" pt:placeholder="Years" style="margin-left:22%"
-	  		required="true" requiredMessage="Field is required" converterMessage="Must be a whole number"
-	  		validatorMessage="Must be more than 0 years">
-	  		<f:validateDoubleRange minimum="1"/>
-	  		</p:inputText>
-	  		<p:messages for="year"/>
-
-		<p:commandButton value="Calculate" action="#{creditCalcBB.calc()}" update="@form" style="margin-left:37%"/>
-		<br />
-	</h:form>
-	</p:panel>
-
-</h:body>
 </html>
